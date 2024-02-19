@@ -1,0 +1,212 @@
+============================================
+RuleBody 1, nested quantification
+============================================
+
+G {
+  Program =
+    | &(Directive*) SourceElement*
+}
+
+---
+
+(source_file
+  (grammar
+    name: (identifier)
+    body: (grammar_body
+      (rule
+        name: (identifier)
+        case: (define)
+        body: (rule_body
+          (top_level_term
+            sequence: (seq
+              (term
+                predicate: (lookahead)
+                base: (seq
+                  (term
+                    base: (identifier)
+                    quantification: (zero_or_more))
+                ))
+              (term
+                base: (identifier)
+                quantification: (zero_or_more))
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+============================================
+RuleBody 2, comment in a string
+============================================
+
+G {
+  multiLineComment = "/*" (~"*/" sourceCharacter)* "*/"
+}
+
+---
+
+(source_file
+  (grammar
+    name: (identifier)
+    body: (grammar_body
+      (rule
+        name: (identifier)
+        case: (define)
+        body: (rule_body
+          (top_level_term
+            sequence: (seq
+              (term
+                base: (terminal_string))
+              (term
+                base: (seq
+                  (term
+                    predicate: (negative_lookahead)
+                    base: (terminal_string))
+                  (term
+                    base: (identifier))
+                )
+                quantification: (zero_or_more))
+              (term
+                base: (terminal_string))
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+============================================
+RuleBody 3, Seq
+============================================
+
+G {
+  Top
+    := ... -- override
+    | &":" ~".." #"lex" "base"
+    | &"star"*
+    | ~"plus"+
+    | #"opt"?
+}
+
+---
+
+(source_file
+  (grammar
+    name: (identifier)
+    body: (grammar_body
+      (rule
+        name: (identifier)
+        case: (override)
+        body: (override_rule_body
+          (override_top_level_term
+            sequence: (super_splice)
+            name: (case_name (identifier)))
+          (override_top_level_term
+            sequence: (seq
+              (term
+                predicate: (lookahead)
+                base: (terminal_string))
+              (term
+                predicate: (negative_lookahead)
+                base: (terminal_string))
+              (term
+                lexification: (lexification)
+                base: (terminal_string))
+              (term
+                base: (terminal_string))))
+          (override_top_level_term
+            sequence: (seq
+              (term
+                predicate: (lookahead)
+                base: (terminal_string)
+                quantification: (zero_or_more))))
+          (override_top_level_term
+            sequence: (seq
+              (term
+                predicate: (negative_lookahead)
+                base: (terminal_string)
+                quantification: (one_or_more))))
+          (override_top_level_term
+            sequence: (seq
+              (term
+                lexification: (lexification)
+                base: (terminal_string)
+                quantification: (zero_or_one))))
+        ))
+    )
+  )
+)
+
+============================================
+RuleBody 4, empty
+============================================
+
+G {
+  Empty = 
+  Empty := 
+  Empty =  -- empty
+  Empty :=  -- empty
+  Empty = "..."
+        | -- empty
+  Empty := "..."
+        | -- empty
+}
+
+---
+
+(source_file
+  (grammar
+    name: (identifier)
+    body: (grammar_body
+      (rule
+        name: (identifier)
+        case: (define))
+      (rule
+        name: (identifier)
+        case: (override))
+      (rule
+        name: (identifier)
+        case: (define)
+        body: (rule_body
+          (top_level_term
+            name: (case_name
+              (identifier)))
+        ))
+      (rule
+        name: (identifier)
+        case: (override)
+        body: (override_rule_body
+          (override_top_level_term
+            name: (case_name
+              (identifier)))
+        ))
+      (rule
+        name: (identifier)
+        case: (define)
+        body: (rule_body
+          (top_level_term
+            sequence: (seq
+              (term
+                base: (terminal_string))))
+          (top_level_term
+            name: (case_name
+              (identifier)))
+        ))
+      (rule
+        name: (identifier)
+        case: (override)
+        body: (override_rule_body
+          (override_top_level_term
+            sequence: (seq
+              (term
+                base: (terminal_string))))
+          (override_top_level_term
+            name: (case_name
+              (identifier)))
+        ))
+    )
+  )
+)

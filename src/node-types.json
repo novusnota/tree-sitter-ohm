@@ -1,0 +1,542 @@
+[
+  {
+    "type": "case_name",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "formals",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "grammar",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "grammar_body",
+            "named": true
+          }
+        ]
+      },
+      "inherits": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "super_grammar",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "grammar_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "rule",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "one_char_terminal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_char",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "override_rule_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "override_top_level_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "override_top_level_term",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "case_name",
+            "named": true
+          }
+        ]
+      },
+      "sequence": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "seq",
+            "named": true
+          },
+          {
+            "type": "super_splice",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "param",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "params",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "param",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "override_rule_body",
+            "named": true
+          },
+          {
+            "type": "rule_body",
+            "named": true
+          }
+        ]
+      },
+      "case": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "define",
+            "named": true
+          },
+          {
+            "type": "extend",
+            "named": true
+          },
+          {
+            "type": "override",
+            "named": true
+          }
+        ]
+      },
+      "description": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "rule_descr",
+            "named": true
+          }
+        ]
+      },
+      "formals": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "formals",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "rule_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "top_level_term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "rule_descr",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "seq",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "term",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "grammar",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "super_grammar",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "term",
+    "named": true,
+    "fields": {
+      "base": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "..",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "one_char_terminal",
+            "named": true
+          },
+          {
+            "type": "params",
+            "named": true
+          },
+          {
+            "type": "seq",
+            "named": true
+          },
+          {
+            "type": "terminal_string",
+            "named": true
+          },
+          {
+            "type": "|",
+            "named": false
+          }
+        ]
+      },
+      "lexification": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "lexification",
+            "named": true
+          }
+        ]
+      },
+      "predicate": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "lookahead",
+            "named": true
+          },
+          {
+            "type": "negative_lookahead",
+            "named": true
+          }
+        ]
+      },
+      "quantification": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "one_or_more",
+            "named": true
+          },
+          {
+            "type": "zero_or_more",
+            "named": true
+          },
+          {
+            "type": "zero_or_one",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "terminal_string",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "escape_char",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "top_level_term",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "case_name",
+            "named": true
+          }
+        ]
+      },
+      "sequence": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "seq",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "\"",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "--",
+    "named": false
+  },
+  {
+    "type": "..",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<:",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": "define",
+    "named": true
+  },
+  {
+    "type": "escape_char",
+    "named": true
+  },
+  {
+    "type": "extend",
+    "named": true
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "lexification",
+    "named": true
+  },
+  {
+    "type": "lookahead",
+    "named": true
+  },
+  {
+    "type": "multiline_comment",
+    "named": true
+  },
+  {
+    "type": "negative_lookahead",
+    "named": true
+  },
+  {
+    "type": "one_or_more",
+    "named": true
+  },
+  {
+    "type": "override",
+    "named": true
+  },
+  {
+    "type": "singleline_comment",
+    "named": true
+  },
+  {
+    "type": "super_splice",
+    "named": true
+  },
+  {
+    "type": "zero_or_more",
+    "named": true
+  },
+  {
+    "type": "zero_or_one",
+    "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  }
+]

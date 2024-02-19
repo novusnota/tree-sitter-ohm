@@ -128,3 +128,21 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# tree-sitter
+tree-sitter-cli
+tree-sitter
+
+# misc
+build/
+examples/
+target/
+log.html
+*.wasm
+/parser.exp
+/parser.lib
+/parser.obj
+/*.ohm
+!/test/sample/*.ohm
+!/test/highlight/*.ohm
+!/test/tags/*.ohm

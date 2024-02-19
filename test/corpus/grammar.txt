@@ -1,0 +1,23 @@
+============================================
+Grammar
+============================================
+
+G1 {}
+G2 <: G1 {}
+G3 {
+}
+
+---
+
+(source_file
+  (grammar
+    name: (identifier)
+    body: (grammar_body))
+  (grammar
+    name: (identifier)
+    inherits: (super_grammar
+      name: (identifier))
+    body: (grammar_body))
+  (grammar
+    name: (identifier)
+    body: (grammar_body)))

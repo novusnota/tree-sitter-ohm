@@ -1,0 +1,94 @@
+============================================
+Rule -- define
+============================================
+
+G {
+  RuleDefinition <form1, form2> ( description ... ) = ".\x20"
+}
+
+---
+
+(source_file
+  (grammar
+    name: (identifier)
+    body: (grammar_body
+      (rule
+        name: (identifier)
+        formals: (formals
+          (identifier)
+          (identifier))
+        description: (rule_descr)
+        case: (define)
+        body: (rule_body
+          (top_level_term
+            sequence: (seq
+              (term
+                base: (terminal_string
+                  (escape_char)))
+            ))
+        ))
+    )
+  )
+)
+
+============================================
+Rule -- override
+============================================
+
+G {
+  RuleOverride
+    := "\"" -- withCaseName
+}
+
+---
+
+(source_file
+  (grammar
+    name: (identifier)
+    body: (grammar_body
+      (rule
+        name: (identifier)
+        case: (override)
+        body: (override_rule_body
+          (override_top_level_term
+            sequence: (seq
+              (term
+                base: (terminal_string
+                  (escape_char)))
+            )
+            name: (case_name
+              (identifier)))
+        ))
+    )
+  )
+)
+
+============================================
+Rule -- extend
+============================================
+
+G {
+  RuleExtend
+    += | "\""
+}
+
+---
+
+(source_file
+  (grammar
+    name: (identifier)
+    body: (grammar_body
+      (rule
+        name: (identifier)
+        case: (extend)
+        body: (rule_body
+          (top_level_term
+            sequence: (seq
+              (term
+                base: (terminal_string
+                  (escape_char)))
+            ))
+        ))
+    )
+  )
+)

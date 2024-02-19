@@ -1,0 +1,68 @@
+============================================
+Base
+============================================
+
+G {
+  Base
+    = ident            -- application
+    | ident <"1", "2"> -- applicationWithParams
+	| "0" .. "9"       -- range
+	| "..."            -- terminal
+	| ("...")          -- paren
+}
+
+---
+
+(source_file
+  (grammar
+    name: (identifier)
+    body: (grammar_body
+      (rule
+        name: (identifier)
+        case: (define)
+        body: (rule_body
+          (top_level_term
+            sequence: (seq
+              (term
+                base: (identifier)))
+            name: (case_name
+              (identifier)))
+          (top_level_term
+            sequence: (seq
+              (term
+                base: (identifier)
+                base: (params
+                  (param
+                    (term
+                      base: (terminal_string)))
+                  (param
+                    (term
+                      base: (terminal_string))))))
+            name: (case_name
+              (identifier)))
+          (top_level_term
+            sequence: (seq
+              (term
+                base: (one_char_terminal)
+                base: (one_char_terminal)))
+            name: (case_name
+              (identifier)))
+          (top_level_term
+            sequence: (seq
+              (term
+                base: (terminal_string)))
+            name: (case_name
+              (identifier)))
+          (top_level_term
+            sequence: (seq
+              (term
+                base: (seq
+                  (term
+                    base: (terminal_string)))))
+            name: (case_name
+              (identifier)))
+        ))	
+    )
+  )
+)
+
