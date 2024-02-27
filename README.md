@@ -20,6 +20,62 @@ queries/
 
 To find highlighting and other queries for specific editors, look in the `editor_queries/` directory.
 
+## 🚀 Usage
+
+### Helix
+
+<details>
+<summary>Instructions</summary>
+
+1. Clone the repo to any convenient place: `git clone https://github.com/novusnota/tree-sitter-ohm ~/.local/git/tree-sitter-ohm` (`~/.local/git` is exemplary, you may choose another directory)
+
+2. Create a folder for queries under your Helix runtime directory, if not exists:
+  * Windows: `mkdir -p ~\AppData\Roaming\helix\runtime\queries`
+  * Linux, macOS, *NIX: `mkdir -p ~/.config/helix/runtime/queries`
+
+3. Symlink the `editor_queries/helix` sub-directory, this will add all the queries:
+  * Windows: `mklink /D ~\AppData\Roaming\helix\runtime\queries\ohm ~\.local\git\tree-sitter-ohm\editor_queries\helix`
+  * Linux, macOS, *NIX: `ln -s ~/.local/git/tree-sitter-ohm/editor_queries/helix ~/.config/helix/runtime/queries/ohm`
+
+4. Inside the `~/.local/git/tree-sitter-ohm/editor_queries/helix` run `mv highlights-before-version-24.scm highlights.scm` to use compatible queries (only for versions prior or equal to 23.10).
+
+5. Add the following to your `~/.config/helix/languages.toml` (Or `~\AppData\Roaming\helix\languages.toml` on Windows):
+
+```toml
+[[language]]
+name = "ohm"
+scope = "source.ohm"
+injection-regex = "ohm"
+file-types = ["ohm"]
+comment-token = "//"
+indent = { tab-width = 2, unit = "  " }
+roots = []
+
+[language.auto-pairs]
+'"' = '"'
+'{' = '}'
+'(' = ')'
+'<' = '>'
+
+[[grammar]]
+name = "ohm"
+source = { path = "/absolute/path/to/your/home/directory/.local/git/tree-sitter-ohm" }  # TODO: replace with your full path to downloaded repo
+```
+
+6. Finally, run the following commands to update all Tree-sitter grammars, including ohm's:
+
+```bash
+hx --grammar fetch
+hx --grammar build
+```
+
+</details>
+
+Queries bundled (see `editor_queries/helix`):
+* `injections.scm` — highlighting of TODO, FIXME and related in single-line comments
+* `indents.scm` — indentation levels
+* `textobjects.scm` — syntax aware text-objects
+
 ## 💲 CLI Usage
 
 Tree-sitter grammars have limited utility on their own and are best used as parsers that can be embedded in other projects. However, [tree-sitter-cli](https://github.com/tree-sitter/tree-sitter/blob/master/cli/README.md) can be used with this grammar to show generated parse trees and syntax highlighting for a given ohm file.
