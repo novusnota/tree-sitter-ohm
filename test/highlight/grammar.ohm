@@ -1,0 +1,18 @@
+G1 {}
+// <- type
+// ^ punctuation.bracket
+//  ^ punctuation.bracket
+
+G2 <: G1 {}
+// <- type
+// ^ operator
+//  ^ operator
+//    ^ type
+//       ^ punctuation.bracket
+//        ^ punctuation.bracket
+
+G3 {
+// <- type
+// ^ punctuation.bracket
+}
+// <- punctuation.bracket

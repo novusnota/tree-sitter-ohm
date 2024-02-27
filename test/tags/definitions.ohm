@@ -1,0 +1,12 @@
+/* Class definitions         @definition.class */
+
+/* doc! doc! doc! */
+Class {}
+// <- definition.class
+
+/* Method definitions        @definition.method */
+
+Methods {
+  Method1 = "what?"
+  // <- definition.method
+}

@@ -148,14 +148,14 @@ module.exports = grammar({
           ),
         ),
         field(
-          "lexification",
+          "lexification", // NOTE: lexifier?
           optional(
             alias("#", $.lexification), // lex
           ),
         ),
         field("base", $._base),
         field(
-          "quantification",
+          "quantification", // NOTE: quantifier?
           optional(
             choice(
               alias("*", $.zero_or_more), // star
@@ -183,17 +183,15 @@ module.exports = grammar({
           // terminal
           $.terminal_string,
         ),
-        seq(
-          // paren / Alt
-          "(",
-          makeNonemptyListOf($.seq, "|"),
-          ")",
-        ),
+        // paren
+        $.alt,
       ),
 
     /* Params, Alt */
 
     params: ($) => seq("<", makeListOf(alias($.seq, $.param), ","), ">"),
+
+    alt: ($) => seq("(", makeNonemptyListOf($.seq, "|"), ")"),
 
     /* terminal, oneCharTerminal */
 

@@ -13,6 +13,7 @@ Generic queries are structured as follows:
 ```
 queries/
 |-- highlights.scm -- syntax highlighting queries (generic, for Tree-sitter & GitHub)
+|-- locals.scm -- fixed set of capture names to track local scopes and variables (and alike)
 |-- injections.scm -- specification for embedded syntaxes (mainly used for TODO/FIXME highlighting in comments)
 `-- tags.scm -- tagging queries for code navigation systems (as used on GitHub)
 ```

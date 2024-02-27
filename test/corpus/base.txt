@@ -6,9 +6,9 @@ G {
   Base
     = ident            -- application
     | ident <"1", "2"> -- applicationWithParams
-	| "0" .. "9"       -- range
-	| "..."            -- terminal
-	| ("...")          -- paren
+    | "0" .. "9"       -- range
+    | "..."            -- terminal
+    | ("...")          -- paren
 }
 
 ---
@@ -56,12 +56,15 @@ G {
           (top_level_term
             sequence: (seq
               (term
-                base: (seq
-                  (term
-                    base: (terminal_string)))))
+                base: (alt
+                  (seq
+                    (term
+                      base: (terminal_string)))
+                )
+              ))
             name: (case_name
               (identifier)))
-        ))	
+        ))
     )
   )
 )

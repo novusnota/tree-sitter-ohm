@@ -1,0 +1,13 @@
+/* Function/method calls     @reference.call */
+
+Calls {
+  Method1 = "what?"
+  Method2 = Method1
+  //        ^ reference.call
+}
+
+
+/* Class reference           @reference.class */
+
+Inherited <: Base {}
+//           ^ reference.class

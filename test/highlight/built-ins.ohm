@@ -1,0 +1,54 @@
+Builtin {
+  Lexical =
+          | any
+          // ^ function.builtin
+
+          | alnum
+          // ^ function.builtin
+
+          | end
+          // ^ function.builtin
+
+          | digit
+          // ^ function.builtin
+
+          | hexDigit
+          // ^ function.builtin
+
+          | letter
+          // ^ function.builtin
+
+          | space
+          // ^ function.builtin
+
+          | lower
+          // ^ function.builtin
+
+          | upper
+          // ^ function.builtin
+
+          | caseInsensitive
+          // ^ function.builtin
+
+          | listOf
+          // ^ function.builtin
+
+          | nonemptyListOf
+          // ^ function.builtin
+
+          | emptyListOf
+          // ^ function.builtin
+
+          | applySyntactic
+          // ^ function.builtin
+
+  Syntactic =
+            | ListOf
+            // ^ function.builtin
+
+            | NonemptyListOf
+            // ^ function.builtin
+
+            | EmptyListOf
+            // ^ function.builtin
+}

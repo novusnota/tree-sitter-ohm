@@ -1,0 +1,138 @@
+Nested {
+// <- type
+//     ^ punctuation.bracket
+
+  Program =
+  // <- function.method
+  //      ^ operator
+
+    |  &(Directive* | AnotherOne*) SourceElement*
+    // <- operator
+    // ^ operator
+    //  ^ punctuation.bracket
+    //   ^ function.method
+    //            ^ operator
+    //              ^ operator
+    //                ^ function.method
+    //                          ^ operator
+    //                           ^ punctuation.bracket
+    //                             ^ function.method
+    //                                          ^ operator
+
+}
+// <- punctuation.bracket
+
+
+StringNotComment {
+// <- type
+//               ^ punctuation.bracket
+
+  multiLineComment = "/*" (~"*/" sourceCharacter)* "*/"
+  // <- function.method
+  //               ^ operator
+  //                 ^ string
+  //                  ^ string
+  //                      ^ punctuation.bracket
+  //                       ^ operator
+  //                        ^ string
+  //                         ^ string
+  //                             ^ function.method
+  //                                            ^ punctuation.bracket
+  //                                             ^ operator
+  //                                               ^ string
+  //                                                ^ string
+
+}
+// <- punctuation.bracket
+
+
+Sequence {
+// <- type
+//       ^ punctuation.bracket
+
+  Top
+  // <- function.method
+
+    := ... -- override
+    // <- operator
+    // ^ operator
+    //     ^ attribute
+
+    |  &":" ~".." #"lex" "base"
+    // <- operator
+    // ^ operator
+    //  ^ string
+    //      ^ operator
+    //       ^ string
+    //        ^ string
+    //            ^ operator
+    //             ^ string
+    //                   ^ string
+
+    |  &"star"*
+    // <- operator
+    // ^ operator
+    //  ^ string
+    //        ^ operator
+
+    |  ~"plus"+
+    // <- operator
+    // ^ operator
+    //  ^ string
+    //        ^ operator
+
+    |  #"opt"?
+    // <- operator
+    // ^ operator
+    //  ^ string
+    //       ^ operator
+
+}
+// <- punctuation.bracket
+
+
+Empty {
+// <- type
+//    ^ punctuation.bracket
+
+  Empty1 = 
+  // <- function.method
+  //     ^ operator
+
+  Empty2 := 
+  // <- function.method
+  //     ^ operator
+
+  Empty3 =  -- empty
+  // <- function.method
+  //     ^ operator
+  //        ^ attribute
+
+  Empty4 :=  -- empty
+  // <- function.method
+  //     ^ operator
+  //         ^ attribute
+
+  Empty5 = ".."
+  // <- function.method
+  //     ^ operator
+  //       ^ string
+  //        ^ string
+
+         | -- empty
+         // <- operator
+         // ^ attribute
+
+  Empty6 := ".."
+  // <- function.method
+  //     ^ operator
+  //        ^ string
+  //         ^ string
+
+         | -- empty
+         // <- operator
+         // attribute
+
+}
+// <- punctuation.bracket
+

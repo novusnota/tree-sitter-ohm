@@ -1,0 +1,48 @@
+G  {
+// <- type
+// ^ punctuation.bracket
+  Base
+  // <- function.method
+
+    = ident            --             application
+    // <- operator
+    // ^ function.method
+    //                 ^ attribute
+    //                                ^ attribute
+
+    | ident < "1" , "2" > -- applicationWithParams
+    // <- operator
+    // ^ function.method
+    //      ^ punctuation.bracket
+    //        ^ string
+    //            ^ punctuation.delimiter
+    //              ^ string
+    //                  ^ punctuation.bracket
+    //                    ^ attribute
+    //                      ^ attribute
+
+    | "0" .. "9" -- range
+    // <- operator
+    // ^ string
+    //    ^ operator
+    //       ^ string
+    //           ^ attribute
+    //             ^ attribute
+
+    | "..." -- terminal
+    // <- operator
+    // ^ string
+    //      ^ attribute
+    //         ^ attribute
+
+    |  ("{}..." ) -- paren
+    // <- operator
+    // ^ punctuation.bracket
+    //  ^ string
+    //   ^ string
+    //    ^ string
+    //          ^ punctuation.bracket
+    //            ^ attribute
+    //              ^ attribute
+}
+// <- punctuation.bracket

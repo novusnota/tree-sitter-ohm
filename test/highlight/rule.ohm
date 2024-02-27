@@ -1,0 +1,68 @@
+Define {
+// <- type
+//     ^ punctuation.bracket
+
+  RuleDefinition
+  // <- function.method
+
+  <form1, form2>
+  // <- punctuation.bracket
+  // ^ variable.parameter
+  //    ^ punctuation.delimiter
+  //      ^ variable.parameter
+  //           ^ punctuation.bracket
+
+  ( description ... )
+  // <- comment
+  // ^ comment
+  //                ^ comment
+
+  =  (".\x20")
+  // <- operator
+  // ^ punctuation.bracket
+  //         ^ punctuation.bracket
+  //  ^ string
+  //   ^ string
+  //    ^^^^ string.special
+  //        ^ string
+
+}
+// <- punctuation.bracket
+
+
+Override {
+// <- type
+//       ^ punctuation.bracket
+
+  RuleOverride
+  // <- function.method
+  
+    := "\" //" -- withCaseName
+    // <- operator
+    // ^ string
+    //  ^ string.special
+    //   ^ string.special
+    //     ^ string
+    //           ^ attribute
+    
+}
+// <- punctuation.bracket
+
+
+Extend {
+// <- type
+//     ^ punctuation.bracket
+
+  RuleExtend
+  // <- function.method
+  
+    += | "\""
+    // <- operator
+    // ^ operator
+    //   ^ string
+    //    ^ string.special
+    //     ^ string.special
+    //      ^ string
+    
+}
+// <- punctuation.bracket

@@ -1,5 +1,20 @@
 [
   {
+    "type": "alt",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "seq",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "case_name",
     "named": true,
     "fields": {},
@@ -313,16 +328,12 @@
         "required": true,
         "types": [
           {
-            "type": "(",
-            "named": false
-          },
-          {
-            "type": ")",
-            "named": false
-          },
-          {
             "type": "..",
             "named": false
+          },
+          {
+            "type": "alt",
+            "named": true
           },
           {
             "type": "identifier",
@@ -337,16 +348,8 @@
             "named": true
           },
           {
-            "type": "seq",
-            "named": true
-          },
-          {
             "type": "terminal_string",
             "named": true
-          },
-          {
-            "type": "|",
-            "named": false
           }
         ]
       },

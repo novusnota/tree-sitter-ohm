@@ -4,7 +4,7 @@ RuleBody 1, nested quantification
 
 G {
   Program =
-    | &(Directive*) SourceElement*
+    | &(Directive* | AnotherOne*) SourceElement*
 }
 
 ---
@@ -21,11 +21,19 @@ G {
             sequence: (seq
               (term
                 predicate: (lookahead)
-                base: (seq
-                  (term
-                    base: (identifier)
-                    quantification: (zero_or_more))
-                ))
+                base: (alt
+                  (seq
+                    (term
+                      base: (identifier)
+                      quantification: (zero_or_more))
+                  )
+                  (seq
+                    (term
+                      base: (identifier)
+                      quantification: (zero_or_more))
+                  )
+                )
+              )
               (term
                 base: (identifier)
                 quantification: (zero_or_more))
@@ -60,12 +68,14 @@ G {
               (term
                 base: (terminal_string))
               (term
-                base: (seq
-                  (term
-                    predicate: (negative_lookahead)
-                    base: (terminal_string))
-                  (term
-                    base: (identifier))
+                base: (alt
+                  (seq
+                    (term
+                      predicate: (negative_lookahead)
+                      base: (terminal_string))
+                    (term
+                      base: (identifier))
+                  )
                 )
                 quantification: (zero_or_more))
               (term
@@ -145,13 +155,13 @@ RuleBody 4, empty
 ============================================
 
 G {
-  Empty = 
-  Empty := 
-  Empty =  -- empty
-  Empty :=  -- empty
-  Empty = "..."
+  Empty1 = 
+  Empty2 := 
+  Empty3 =  -- empty
+  Empty4 :=  -- empty
+  Empty5 = "..."
         | -- empty
-  Empty := "..."
+  Empty6 := "..."
         | -- empty
 }
 
