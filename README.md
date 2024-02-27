@@ -37,9 +37,7 @@ To find highlighting and other queries for specific editors, look in the `editor
   * Windows: `mklink /D ~\AppData\Roaming\helix\runtime\queries\ohm ~\.local\git\tree-sitter-ohm\editor_queries\helix`
   * Linux, macOS, *NIX: `ln -s ~/.local/git/tree-sitter-ohm/editor_queries/helix ~/.config/helix/runtime/queries/ohm`
 
-4. Inside the `~/.local/git/tree-sitter-ohm/editor_queries/helix` run `mv highlights-before-version-24.scm highlights.scm` to use compatible queries (only for versions prior or equal to 23.10).
-
-5. Add the following to your `~/.config/helix/languages.toml` (Or `~\AppData\Roaming\helix\languages.toml` on Windows):
+4. Add the following to your `~/.config/helix/languages.toml` (Or `~\AppData\Roaming\helix\languages.toml` on Windows):
 
 ```toml
 [[language]]
@@ -62,7 +60,7 @@ name = "ohm"
 source = { path = "/absolute/path/to/your/home/directory/.local/git/tree-sitter-ohm" }  # TODO: replace with your full path to downloaded repo
 ```
 
-6. Finally, run the following commands to update all Tree-sitter grammars, including ohm's:
+5. Finally, run the following commands to update all Tree-sitter grammars, including ohm's:
 
 ```bash
 hx --grammar fetch
