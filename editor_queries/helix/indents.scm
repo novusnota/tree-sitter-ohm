@@ -10,11 +10,6 @@
 
   ; (...| ...)
   (alt)
-
-  ; misc.
-  ; (ternary_expression)
-  ; (binary_expression)
-  ; (return_statement)
 ] @indent
 
 ; outdent
