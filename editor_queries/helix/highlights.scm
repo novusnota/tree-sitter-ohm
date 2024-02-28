@@ -1,20 +1,23 @@
-; NOTE: Order of highlight queries matters, as Tree-sitter uses the first it finds.
-; NOTE: Therefore, narrow highlight queries should be placed before broad captures.
-; ---------------------------------------------------------------------------------
+; See: https://docs.helix-editor.com/master/themes.html#syntax-highlighting
+; -------------------------------------------------------------------------
 
 ; attribute
 ; ---------
 
 (case_name) @attribute
 
-; comment
-; -------
+; comment.line
+; ------------
 
 [
   (singleline_comment)
-  (multiline_comment)
   (rule_descr)
-] @comment
+] @comment.line
+
+; comment.block
+; -------------
+
+(multiline_comment) @comment.block
 
 ; function.method
 ; ---------------
@@ -109,18 +112,3 @@
 
 (formals
   (identifier) @variable.parameter)
-
-; N/A or unused:
-; --------------
-; tag
-; type.builtin
-; constructor
-; embedded
-; function
-; variable.builtin
-; keyword
-; number
-; property
-; constant.builtin
-; constant
-; variable

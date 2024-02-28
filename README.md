@@ -70,6 +70,7 @@ hx --grammar build
 </details>
 
 Queries bundled (see `editor_queries/helix`):
+* `highlights.scm` — syntax highlighting
 * `injections.scm` — highlighting of TODO, FIXME and related in single-line comments
 * `indents.scm` — indentation levels
 * `textobjects.scm` — syntax aware text-objects
