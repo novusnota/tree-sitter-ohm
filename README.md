@@ -1,4 +1,5 @@
 # tree-sitter-ohm
+
 🌳 Tree-sitter grammar for the Ohm domain-specific language. Quickly build parsers, interpreters, and compilers for programming languages with Ohm's parsing toolkit!
 
 ## 🎨 Structure
@@ -21,6 +22,86 @@ queries/
 To find highlighting and other queries for specific editors, look in the `editor_queries/` directory.
 
 ## 🚀 Usage
+
+### Neovim
+
+Installation assumes you're using [`lazy.nvim`](https://github.com/folke/lazy.nvim) as a plugin manager:
+
+<details>
+<summary>Instructions</summary>
+
+1. Clone the repo to any convenient place: `git clone https://github.com/novusnota/tree-sitter-ohm ~/.local/git/tree-sitter-ohm` (`~/.local/git` is exemplary, you may choose another directory)
+
+2. Create a folder for queries under your Neovim runtime directory, if not exists:
+  * Windows: `mkdir -p ~\AppData\Local\nvim\queries`
+  * Linux, macOS, *NIX: `mkdir -p ~/.config/nvim/queries`
+
+3. Symlink the `editor_queries/neovim` sub-directory, this will add all the queries:
+  * Windows: `mklink /D ~\AppData\Local\nvim\queries\ohm ~\.local\git\tree-sitter-ohm\editor_queries\neovim`
+  * Linux, macOS, *NIX: `ln -s ~/.local/git/tree-sitter-ohm/editor_queries/neovim ~/.config/nvim/queries/ohm`
+
+4. Add the following (partly or as a whole) to your `~/.config/nvim/init.lua` (Or `~\AppData\Local\nvim\init.lua` on Windows):
+
+For the general Tree-sitter support:
+
+```lua
+-- lazy.nvim package manager
+require('lazy').setup({
+  -- ...
+	{
+    -- Highlight, edit, and navigate code
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+
+    -- Optional, may be removed:
+    dependencies = {
+      -- adds syntax aware text-objects, select, move, swap, and peek support
+      -- see: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+      'nvim-treesitter/nvim-treesitter-textobjects',
+
+      -- adds a sticky context header on top as you scroll through file contents
+      -- see: https://github.com/nvim-treesitter/nvim-treesitter-context
+      'nvim-treesitter/nvim-treesitter-context'
+    },
+  },
+  -- ...
+}, {})
+```
+
+For the tree-sitter-ohm support:
+
+```lua
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+
+-- Adds tree-sitter-ohm support
+parser_config.ohm = {
+  install_info = {
+    url = "~/.local/git/tree-sitter-ohm", -- a path to the cloned repo
+    files = {"src/parser.c", "src/scanner.c"},
+    branch = "main",
+    generate_requires_npm = false,
+    requires_generate_from_grammar = false,
+  }
+}
+
+-- Adds filetype recognition for .ohm files
+vim.filetype.add({
+  extension = {
+    ohm = "ohm",
+  }
+})
+```
+
+5. For further configuration and customization, refer to the following repositories:
+* [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+* [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
+* [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
+
+</details>
+
+Queries bundled (see `editor_queries/neovim`):
+* `folds.scm` — syntax folds (note, that folding has to be enabled in config in order to use those)
+* `context.scm` — shows sticky context on top of the editor as you scroll through file contents
 
 ### Helix
 
