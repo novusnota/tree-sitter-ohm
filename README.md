@@ -32,15 +32,7 @@ Installation assumes you're using [`lazy.nvim`](https://github.com/folke/lazy.nv
 
 1. Clone the repo to any convenient place: `git clone https://github.com/novusnota/tree-sitter-ohm ~/.local/git/tree-sitter-ohm` (`~/.local/git` is exemplary, you may choose another directory)
 
-2. Create a folder for queries under your Neovim runtime directory, if not exists:
-  * Windows: `mkdir -p ~\AppData\Local\nvim\queries`
-  * Linux, macOS, *NIX: `mkdir -p ~/.config/nvim/queries`
-
-3. Symlink the `editor_queries/neovim` sub-directory, this will add all the queries:
-  * Windows: `mklink /D ~\AppData\Local\nvim\queries\ohm ~\.local\git\tree-sitter-ohm\editor_queries\neovim`
-  * Linux, macOS, *NIX: `ln -s ~/.local/git/tree-sitter-ohm/editor_queries/neovim ~/.config/nvim/queries/ohm`
-
-4. Add the following (partly or as a whole) to your `~/.config/nvim/init.lua` (Or `~\AppData\Local\nvim\init.lua` on Windows):
+2. Add the following (partly or as a whole) to your `~/.config/nvim/init.lua` (Or `~\AppData\Local\nvim\init.lua` on Windows):
 
 For the general Tree-sitter support:
 
@@ -84,15 +76,29 @@ parser_config.ohm = {
   }
 }
 
--- Adds filetype recognition for .ohm files
-vim.filetype.add({
-  extension = {
-    ohm = "ohm",
-  }
+-- Adds filetype recognition for .ohm files and simple indentation rules
+vim.api.nvim_create_autocmd({"BufEnter", "BufWinEnter"}, {
+  pattern = "*.ohm",
+  callback = function()
+    vim.bo.filetype = "ohm"
+    vim.opt_local.expandtab = true
+    vim.opt_local.softtabstop = 2
+    vim.opt_local.shiftwidth = 2
+  end
 })
 ```
 
-5. For further configuration and customization, refer to the following repositories:
+3. Create a folder for queries under your Neovim runtime directory, if not exists:
+  * Windows: `mkdir -p ~\AppData\Local\nvim\queries`
+  * Linux, macOS, *NIX: `mkdir -p ~/.config/nvim/queries`
+
+4. Symlink the `editor_queries/neovim` sub-directory, this will add all the queries:
+  * Windows: `mklink /D ~\AppData\Local\nvim\queries\ohm ~\.local\git\tree-sitter-ohm\editor_queries\neovim`
+  * Linux, macOS, *NIX: `ln -s ~/.local/git/tree-sitter-ohm/editor_queries/neovim ~/.config/nvim/queries/ohm`
+
+5. Finally, run the `:TSInstall ohm` inside the Neovim.
+
+6. For further configuration and customization, refer to the following repositories:
 * [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 * [nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)
 * [nvim-treesitter-context](https://github.com/nvim-treesitter/nvim-treesitter-context)
@@ -104,6 +110,7 @@ Queries bundled (see `editor_queries/neovim`):
 * `locals.scm` — used to extract keyword definitions, scopes, references, etc., but NOT used for highlighting (unlike Generic or Helix queries)
 * `injections.scm` — highlighting of TODO, FIXME and related in single-line comments
 * `folds.scm` — syntax folds (note, that folding has to be enabled in config in order to use those)
+* `indents.scm` — indentation levels
 * `textobjects.scm` — syntax aware text-objects, select, move, swap, and peek support.
 * `context.scm` — shows sticky context on top of the editor as you scroll through file contents
 

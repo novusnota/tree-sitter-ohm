@@ -83,13 +83,11 @@
 
 ; Lexical
 ((identifier) @function.builtin
-  (#match? @function.builtin "^(any|alnum|end|digit|hexDigit|letter|space|lower|upper|caseInsensitive|listOf|nonemptyListOf|emptyListOf|applySyntactic)$")
-  (#is-not? local))
+  (#match? @function.builtin "^(any|alnum|end|digit|hexDigit|letter|space|lower|upper|caseInsensitive|listOf|nonemptyListOf|emptyListOf|applySyntactic)$"))
 
 ; Syntactic
 ((identifier) @function.builtin
-  (#match? @function.builtin "^(ListOf|NonemptyListOf|EmptyListOf)$")
-  (#is-not? local))
+  (#match? @function.builtin "^(ListOf|NonemptyListOf|EmptyListOf)$"))
 
 ; function.method
 ; ---------------
