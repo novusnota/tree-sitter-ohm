@@ -100,7 +100,11 @@ vim.filetype.add({
 </details>
 
 Queries bundled (see `editor_queries/neovim`):
+* `highlights.scm` — syntax highlighting
+* `locals.scm` — used to extract keyword definitions, scopes, references, etc., but NOT used for highlighting (unlike Generic or Helix queries)
+* `injections.scm` — highlighting of TODO, FIXME and related in single-line comments
 * `folds.scm` — syntax folds (note, that folding has to be enabled in config in order to use those)
+* `textobjects.scm` — syntax aware text-objects, select, move, swap, and peek support.
 * `context.scm` — shows sticky context on top of the editor as you scroll through file contents
 
 ### Helix
