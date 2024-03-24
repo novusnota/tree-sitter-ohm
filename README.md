@@ -191,6 +191,8 @@ For a more streamlined experience, you may:
 
 - [Official Website](https://ohmjs.org/)
 - [GitHub.com Source](https://github.com/ohmjs/ohm)
+- [Awesome Ohm list](https://github.com/ohmjs/awesome-ohm)
+- [VSCode extension](https://github.com/novusnota/vscode-ohm)
 
 ## Credits
 
