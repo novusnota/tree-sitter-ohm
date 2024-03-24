@@ -46,7 +46,7 @@
 ; string.special
 ; --------------
 
-(escape_char) @string.special
+(escape_char) @constant.character.escape
 
 ; string
 ; ------
