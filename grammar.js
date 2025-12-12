@@ -220,7 +220,7 @@ module.exports = grammar({
 
     /* Identifiers */
 
-    identifier: (_) => /(r#)?[\p{XID_Start}_][\p{XID_Start}0-9_]*/,
+    identifier: (_) => /(r#)?[\p{XID_Start}_][\p{XID_Start}0-9_]*/u,
     // see:
     // 1. https://www.regular-expressions.info/unicode.html#category
     // 2. https://unicode.org/reports/tr31/

@@ -41,11 +41,11 @@
     "play": "tree-sitter build-wasm && tree-sitter playground"
   },
   "dependencies": {
-    "nan": "^2.18.0"
+    "nan": "^2.24.0"
   },
   "devDependencies": {
-    "node-gyp": "^10.0.1",
-    "prettier": "^3.2.5",
+    "node-gyp": "^10.3.1",
+    "prettier": "^3.7.4",
     "tree-sitter-cli": "^0.20.8"
   },
   "tree-sitter": [
